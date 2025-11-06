@@ -14,15 +14,14 @@ jobs:
       - name: Obtener código
         uses: actions/checkout@v4
 
-      # Validación de HTML
-      - name: Instalar y validar HTML con HTMLHint
+      # Validar HTML con HTMLHint
+      - name: Validar HTML
         run: |
           npm install -g htmlhint
           htmlhint "**/*.html"
 
-      # Validación de CSS
-      - name: Instalar y validar CSS con Stylelint
+      # Validar CSS con un validador W3C oficial
+      - name: Validar CSS con W3C Validator
         run: |
-          npm install -g stylelint stylelint-config-standard
-          echo '{ "extends": "stylelint-config-standard" }' > .stylelintrc.json
-          stylelint "css/**/*.css"
+          npm install -g w3c-css
+          w3c-css "css/**/*.css"
